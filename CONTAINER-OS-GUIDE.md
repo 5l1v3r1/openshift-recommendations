@@ -47,6 +47,11 @@ This section describes good practices during pods definition.
 * You should avoid using the **`:latest`** tag when deploying containers in production, because this makes it hard to track which version of the image is running and hard to roll back.
 * To make sure the container always uses the same version of the image, you can specify its digest (for example `sha256:46b35ftt08af5e43a7fea6c4cf9c25ccf269ee113168c19722f878345d3kew23`). This uniquely identifies a specific version of the image, so it will never be updated by Kubernetes unless you change the digest value.
 
+## Application's configuration
+
+* You should avoid keeping configuration files for your application in the container.
+* Use `ConfigMaps` or environment variables (or mix of both) to pass configuration for your application to the container.
+
 ## Additional privileges
 
 * It is important to **never** change `default` service account (*ServiceAccount*). The default service account should have granted default privileges which not allow for access to API, such account also should have default SCC.
